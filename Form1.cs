@@ -1,4 +1,9 @@
-﻿using System;
+//-----------------------------------------------------------------------
+// DBCmerger - CAN database file merger for C#
+// Author: ibrahimdogan8, alperunlu - 2022
+//-----------------------------------------------------------------------
+
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -66,7 +71,7 @@ namespace DBCmerger
                 MessageBox.Show("Please enter a valid file name!");
                 return;
             }
-            //sbwrite temizle
+            
             sbWrite.Clear();
 
             MergeInitial();
@@ -105,8 +110,6 @@ namespace DBCmerger
 
         private void MergeBU()
         {
-
-            //TODO: BU_2 node must be added
 
             using (StreamReader sr = new StreamReader(CANfileName1))
             {
@@ -176,14 +179,14 @@ namespace DBCmerger
                     sbWrite.Append("\n");
                     sbWrite.Append("\n");
                     sbWrite.Append(line);
-                    //merged_DBC.WriteLine(line);
+                    
                 }
                 else if (line.StartsWith(" SG_ "))
                 {
                     sbWrite.Append("\n");
                     sbWrite.Append(line);
                     DBC1_CM = count;
-                    //merged_DBC.WriteLine(line);
+                   
                 }
                     count++;
                 }
@@ -201,14 +204,14 @@ namespace DBCmerger
                     sbWrite.Append("\n");
                     sbWrite.Append("\n");
                     sbWrite.Append(line);
-                    //merged_DBC.WriteLine(line);
+                    
                 }
                 else if (line.StartsWith(" SG_ "))
                 {
                     sbWrite.Append("\n");
                     sbWrite.Append(line);
-                        DBC2_CM = count;
-                        //merged_DBC.WriteLine(line);
+                    DBC2_CM = count;
+                        
                 }
                     count++;
                 }
@@ -249,8 +252,8 @@ namespace DBCmerger
 
             using (StreamReader sr = new StreamReader(CANfileName2))
             {
-                count = 0;
-                System.IO.FileInfo ff = new System.IO.FileInfo(CANfileName2);
+               count = 0;
+               System.IO.FileInfo ff = new System.IO.FileInfo(CANfileName2);
                while ((line = sr.ReadLine()) != null)
                 {
                     if (count == DBC2_CM)
@@ -274,8 +277,7 @@ namespace DBCmerger
                             }
                     }                    
                 }
-                    count++; 
-                    //commit2 
+                    count++;                      
                 }
             }
         }
